@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "@antfu"
+  ],
+  "rules": {
+    "no-alert": "off",
+    "no-console": "off"
+  }
+}
