@@ -13,7 +13,7 @@ interface GetStatusRes {
   timeout: number
 }
 
-const BASE_URL = 'https://online-tools-backend.deno.dev'
+const BASE_URL = 'https://api.tools.1024.cab'
 
 export async function getText(accessCode: string) {
   const res = await fetch(`${BASE_URL}/clipboard/text?accessCode=${accessCode}`)
