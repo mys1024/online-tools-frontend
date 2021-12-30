@@ -41,6 +41,10 @@ tools:
     hello: Hello, {name}!
     title: Hello
     whats-your-name: What's your name?
+  now:
+    local: Local
+    title: Now
+    unixTimestamp: Unix Timestamp
   yamlToJson:
     hint: Enter your YAML
     title: YAML to JSON

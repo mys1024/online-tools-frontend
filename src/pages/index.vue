@@ -10,6 +10,7 @@ const tools: ToolInfo[] = [
   { title: () => t('tools.hello.title'), path: '/hello' },
   { title: () => t('tools.clipboard.title'), path: '/clipboard' },
   { title: () => t('tools.yamlToJson.title'), path: '/yaml' },
+  { title: () => t('tools.now.title'), path: '/now' },
 ]
 </script>
 

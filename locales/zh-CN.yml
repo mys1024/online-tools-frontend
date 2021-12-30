@@ -27,6 +27,10 @@ tools:
     hello: 你好，{name}！
     title: 你好
     whats-your-name: 输入你的名字
+  now:
+    local: 当地时间
+    title: 当前
+    unixTimestamp: Unix 时间戳
   yamlToJson:
     hint: 请输入你的 YAML
     title: YAML 转 JSON
