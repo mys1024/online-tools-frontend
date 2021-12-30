@@ -14,7 +14,7 @@ const toggleLocales = () => {
   <div>
     <nav class="text-xl mt-6">
       <router-link class="icon-btn mx-2" to="/" :title="t('button.home')">
-        <carbon-campsite />
+        <carbon-home />
       </router-link>
 
       <button class="icon-btn mx-2 !outline-none" :title="t('button.toggle_dark')" @click="toggleDark()">
