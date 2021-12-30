@@ -35,10 +35,15 @@ const toggleLocales = () => {
       </a>
     </nav>
     <div class="mt-5 mx-auto text-center text-sm">
-      <span class="opacity-40">© 2021 </span>
       <span class="opacity-40 transition-opacity duration-300 hover:opacity-70">
-        <a href="https://github.com/mys1024">
-          mys1024
+        <a href="https://mit-license.org/">
+          MIT License
+        </a>
+      </span>
+      <span class="opacity-40">© 2021</span>
+      <span class="opacity-40 transition-opacity duration-300 hover:opacity-70">
+        <a href="https://mys.1024.cab">
+          Mys1024
         </a>
       </span>
     </div>
