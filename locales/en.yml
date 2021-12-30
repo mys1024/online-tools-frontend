@@ -36,7 +36,6 @@ tools:
       the text you just shared.
     textContent: Text Content
     title: Clipboard
-    totle: Clipboard
   hello:
     hello: Hello, {name}!
     title: Hello
