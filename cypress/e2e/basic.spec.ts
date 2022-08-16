@@ -3,20 +3,26 @@ context('Basic', () => {
     cy.visit('/')
   })
 
-  it('basic nav', () => {
+  it('home', () => {
     cy.url()
       .should('eq', 'http://localhost:3333/')
+  })
 
+  it('clipboard', () => {
     cy.get('[href="/clipboard"]')
       .click()
       .url()
       .should('eq', 'http://localhost:3333/clipboard')
+  })
 
+  it('yaml-to-json', () => {
     cy.get('[href="/yaml-to-json"]')
       .click()
       .url()
       .should('eq', 'http://localhost:3333/yaml-to-json')
+  })
 
+  it('now', () => {
     cy.get('[href="/now"]')
       .click()
       .url()
