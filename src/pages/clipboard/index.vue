@@ -31,7 +31,7 @@ async function onSaveBtnClick() {
 async function onAccessBtnClick() {
   let res
   try {
-    res = await getClipboardItem(text.value)
+    res = await getClipboardItem(accessKey.value)
   }
   catch (err) {
     failureHandler('Failed to access 😢', err)
@@ -48,7 +48,7 @@ async function onAccessBtnClick() {
 async function onDeleteBtnClick() {
   let res
   try {
-    res = await deleteClipboardItem(text.value)
+    res = await deleteClipboardItem(accessKey.value)
   }
   catch (err) {
     failureHandler('Failed to delete 😢', err)
