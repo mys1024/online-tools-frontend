@@ -1,35 +1,28 @@
+title:
+  online_tools: 在线工具
+  not_found: 页面不存在
+  clipboard: 剪贴板
+  now: 当前
+  yaml_to_json: YAML 转 JSON
+
 button:
   about: 关于
   back: 返回
-  go: 确定
+  ok: 确定
   home: 首页
   toggle_dark: 切换深色模式
   toggle_langs: 切换语言
-not-found: 未找到页面
-siteTitle: 在线工具
-tools:
-  clipboard:
-    access: 提取
-    accessCode: 提取码
-    accessDesc: 在第一个输入框中输入提取码，然后点击取出按钮。如果提取码有效，则其对应的文本将会出现在第二个文本框中。
-    delete: 删除
-    deleteDesc: 你所存入的文本会在10分钟之后被删除，其对应的提取码也会同时失效。如果你想要立即删除文本，在第一个输入框中输入其对应的提取码，然后点击删除按钮即可。
-    limit: 限制
-    limitDesc: >-
-      每条存入的文本不能超过1万个字符。超过字符数量限制的文本会被拒绝存入。本站最多只能同时暂存10万条文本。当文本数量达到此限制时会拒绝新文本的存入，等待旧文本失效之后才能再存入新的文本。
-    save: 保存
-    saveDesc: >-
-      在第二个文本框中输入你想要分享的文本，然后点击存入按钮。你的文本会被暂存在本站的服务器，并在第一个输入框中生成提取码。使用其他设备访问本站，并使用提取码来取出你刚才分享的文本。
-    textContent: 文本内容
-    title: 剪贴板
-  hello:
-    hello: 你好，{name}！
-    title: 你好
-    whats-your-name: 输入你的名字
-  now:
-    local: 当地时间
-    title: 当前
-    unixTimestamp: Unix 时间戳
-  yamlToJson:
-    hint: 请输入你的 YAML
-    title: YAML 转 JSON
+  save: 保存
+  access: 访问
+  delete: 删除
+
+intro:
+  language: 语言
+  en: 英语
+  zh-CN: 简体中文
+  text: 文本
+  access_key: 访问码
+  expire: （在30分钟后会过期）
+  copied: 已复制
+  local: 本地化
+  unix_timestamp: Unix 时间戳

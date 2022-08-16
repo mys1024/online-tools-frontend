@@ -1,49 +1,28 @@
+title:
+  online_tools: Online Tools
+  not_found: Not Found
+  clipboard: Clipboard
+  now: Now
+  yaml_to_json: YAML to JSON
+
 button:
   about: About
   back: Back
-  go: GO
+  ok: OK
   home: Home
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages
-not-found: Not found
-siteTitle: Online Tools
-tools:
-  clipboard:
-    access: Access
-    accessCode: Access Code
-    accessDesc: >-
-      Enter the access code in the first input box, and then click the access
-      button. If the access code is valid, its corresponding text will appear in
-      the second text box.
-    delete: Delete
-    deleteDesc: >-
-      The text you saved will be deleted after 10 minutes, and the corresponding
-      access code will become invalid at the same time. If you want to delete
-      the text immediately, enter its corresponding access code in the first
-      input box, and then click the Delete button.
-    limit: limit
-    limitDesc: >-
-      Text cannot exceed 10000 characters, or it will be rejected to save. This
-      site can only save 100000 texts at most. When the number of text reaches
-      this limit, the saving of new text will be rejected, and the new text can
-      be saved only after the old text becomes invalid.
-    save: Save
-    saveDesc: >-
-      Enter the text you want to share in the second text box, and then click
-      the Save button. Your text will be temporarily stored in the server of
-      this site, and an access code will be generated in the first input box.
-      Use other devices to access this site and use the access code to aceesss
-      the text you just shared.
-    textContent: Text Content
-    title: Clipboard
-  hello:
-    hello: Hello, {name}!
-    title: Hello
-    whats-your-name: What's your name?
-  now:
-    local: Local
-    title: Now
-    unixTimestamp: Unix Timestamp
-  yamlToJson:
-    hint: Enter your YAML
-    title: YAML to JSON
+  save: Save
+  access: Access
+  delete: Delete
+
+intro:
+  language: Language
+  en: English
+  zh-CN: Simplify Chinese
+  text: Text
+  access_key: Access Key
+  expire: (will expire after 30 minutes)
+  copied: Copied
+  local: Local
+  unix_timestamp: Unix Timestamp

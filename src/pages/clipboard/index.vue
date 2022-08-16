@@ -1,54 +1,80 @@
-<script setup lang="ts">
-import { getText, postText, deleteText } from './api'
+<script lang="ts" setup>
+import { deleteClipboardItem, getClipboardItem, postClipboardItem } from '~/api/clipboard'
+
 const { t } = useI18n()
 
-const accessCode = ref('')
-const textContent = ref('')
+const accessKey = ref('')
+const text = ref('')
 
-const saveBtnHandler = async() => {
-  const { res, jsonPromise } = await postText(textContent.value)
-  const payload = await jsonPromise
-  if (!res.ok) {
-    alert('Failed to save 😢')
-    console.error('Failed to save 😢', res)
-    return
-  }
-  accessCode.value = payload.accessCode
-  textContent.value = ''
+function failureHandler(message: string, reason: unknown) {
+  alert(message)
+  console.error(`${message}:`, reason)
 }
 
-const accessBtnHandler = async() => {
-  const { res, jsonPromise } = await getText(accessCode.value)
-  const payload = await jsonPromise
-  if (!res.ok) {
-    alert('Failed to access 😢')
-    console.error('Failed to access 😢', res)
+async function onSaveBtnClick() {
+  let res
+  try {
+    res = await postClipboardItem(text.value)
+  }
+  catch (err) {
+    failureHandler('Failed to save 😢', err)
     return
   }
-  textContent.value = payload.text
-  accessCode.value = ''
+  if (!res?.ok) {
+    failureHandler('Failed to save 😢', res)
+    return
+  }
+  accessKey.value = (await res.json()).key
+  text.value = ''
 }
 
-const deleteBtnHandler = async() => {
-  const { res } = await deleteText(accessCode.value)
-  if (!res.ok) {
-    alert('Failed to delete 😢')
-    console.error('Failed to delete 😢', res)
+async function onAccessBtnClick() {
+  let res
+  try {
+    res = await getClipboardItem(text.value)
+  }
+  catch (err) {
+    failureHandler('Failed to access 😢', err)
     return
   }
-  accessCode.value = ''
-  textContent.value = ''
+  if (!res?.ok) {
+    failureHandler('Failed to access 😢', res)
+    return
+  }
+  text.value = (await res.json()).text
+  accessKey.value = ''
+}
+
+async function onDeleteBtnClick() {
+  let res
+  try {
+    res = await deleteClipboardItem(text.value)
+  }
+  catch (err) {
+    failureHandler('Failed to delete 😢', err)
+    return
+  }
+  if (!res?.ok) {
+    failureHandler('Failed to delete 😢', res)
+    return
+  }
+  accessKey.value = ''
+  text.value = ''
 }
 </script>
 
 <template>
-  <div>
-    <Box :title="t('tools.clipboard.title')">
+  <TitledLayout
+    :title="t('title.clipboard')"
+    w="md:7/10 lg:3/5"
+  >
+    <div>
       <div>
+        <!-- input for `access key` -->
         <input
-          v-model="accessCode"
-          :placeholder="t('tools.clipboard.accessCode')"
-          :aria-label="t('tools.clipboard.accessCode')"
+          v-model="accessKey"
+          :placeholder="t('intro.access_key')"
+          :aria-label="t('intro.access_key')"
           type="text"
           autocomplete="false"
           p="x-4 y-2"
@@ -56,78 +82,50 @@ const deleteBtnHandler = async() => {
           bg="transparent"
           border="~ rounded gray-200 dark:gray-700"
           outline="none active:none"
-        />
-        <label class="hidden" for="input">{{ t('tools.clipboard.accessCode') }}</label>
+        >
+        <label class="hidden" for="input">{{ t('intro.access_key') }}</label>
       </div>
+      <!-- textarea for `text` -->
       <div class="mt-4">
         <textarea
-          v-model="textContent"
-          :placeholder="t('tools.clipboard.textContent')"
-          :aria-label="t('tools.clipboard.textContent')"
+          v-model="text"
+          :placeholder="`${t('intro.text')} ${t('intro.expire')}`"
+          :aria-label="t('intro.text')"
           type="text"
           autocomplete="false"
           p="x-4 y-2"
           w="full"
-          h="250px"
+          h="50vh"
           bg="transparent"
           border="~ rounded gray-200 dark:gray-700"
           outline="none active:none"
         />
-        <label class="hidden" for="input">{{ t('tools.clipboard.textContent') }}</label>
+        <label class="hidden" for="input">{{ t('intro.text') }}</label>
       </div>
+      <!-- buttons -->
       <div class="mt-4">
         <button
-          :disabled="textContent === ''"
+          :disabled="text === ''"
           class="m-3 text-sm btn"
-          @click="saveBtnHandler"
+          @click="onSaveBtnClick"
         >
-          {{ t('tools.clipboard.save') }}
+          {{ t('button.save') }}
         </button>
         <button
-          :disabled="accessCode === ''"
+          :disabled="accessKey === ''"
           class="m-3 text-sm btn"
-          @click="accessBtnHandler"
+          @click="onAccessBtnClick"
         >
-          {{ t('tools.clipboard.access') }}
+          {{ t('button.access') }}
         </button>
         <button
-          :disabled="accessCode === ''"
+          :disabled="accessKey === ''"
           class="m-3 text-sm btn"
-          @click="deleteBtnHandler"
+          @click="onDeleteBtnClick"
         >
-          {{ t('tools.clipboard.delete') }}
+          {{ t('button.delete') }}
         </button>
       </div>
-      <div class="mt-24 space-y-12">
-        <Box
-          :title="t('tools.clipboard.save')"
-          :title-level="3"
-          :disabled-padding="true"
-        >
-          {{ t('tools.clipboard.saveDesc') }}
-        </Box>
-        <Box
-          :title="t('tools.clipboard.access')"
-          :title-level="3"
-          :disabled-padding="true"
-        >
-          {{ t('tools.clipboard.accessDesc') }}
-        </Box>
-        <Box
-          :title="t('tools.clipboard.delete')"
-          :title-level="3"
-          :disabled-padding="true"
-        >
-          {{ t('tools.clipboard.deleteDesc') }}
-        </Box>
-        <Box
-          :title="t('tools.clipboard.limit')"
-          :title-level="3"
-          :disabled-padding="true"
-        >
-          {{ t('tools.clipboard.limitDesc') }}
-        </Box>
-      </div>
-    </Box>
-  </div>
+    </div>
+  </TitledLayout>
 </template>

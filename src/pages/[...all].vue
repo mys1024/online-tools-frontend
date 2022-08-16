@@ -1,30 +1,14 @@
-<script setup lang="ts">
-const router = useRouter()
+<script lang="ts" setup>
 const { t } = useI18n()
 </script>
 
 <template>
-  <div>
-    <div>
-      <p class="text-4xl">
-        <carbon-warning class="inline-block" />
-      </p>
+  <TitledLayout
+    :title="t('title.not_found')"
+    w="md:7/10 lg:3/5"
+  >
+    <div text-2xl>
+      🥲
     </div>
-    <div>
-      {{ t('not-found') }}
-    </div>
-    <div>
-      <button
-        class="btn m-3 text-sm mt-8"
-        @click="router.back()"
-      >
-        {{ t('button.back') }}
-      </button>
-    </div>
-  </div>
+  </TitledLayout>
 </template>
-
-<route lang="yaml">
-meta:
-  layout: default
-</route>

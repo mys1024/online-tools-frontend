@@ -1,51 +1,56 @@
 <script setup lang="ts">
-import { isDark, toggleDark } from '~/logic'
-
 const { t, availableLocales, locale } = useI18n()
 
+const langHintAvailability = ref(0)
+const triggerLangHintAvailability = () => {
+  langHintAvailability.value++
+  setTimeout(() => langHintAvailability.value--, 5000)
+}
+
 const toggleLocales = () => {
-  // change to some real logic
   const locales = availableLocales
-  locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
+  const index = (locales.indexOf(locale.value) + 1) % locales.length
+  locale.value = locales[index] as string
+  triggerLangHintAvailability()
 }
 </script>
 
 <template>
-  <div>
-    <nav class="text-xl mt-6">
-      <router-link class="icon-btn mx-2" to="/" :title="t('button.home')">
-        <carbon-home />
-      </router-link>
-
-      <button class="icon-btn mx-2 !outline-none" :title="t('button.toggle_dark')" @click="toggleDark()">
-        <carbon-moon v-if="isDark" />
-        <carbon-sun v-else />
-      </button>
-
-      <router-link class="icon-btn mx-2" to="/about" :title="t('button.about')">
-        <carbon-dicom-overlay />
-      </router-link>
-
-      <a class="icon-btn mx-2" rel="noreferrer" href="https://github.com/mys1024/online-tools-frontend" target="_blank" title="GitHub">
-        <carbon-logo-github />
-      </a>
-
-      <a class="icon-btn mx-2" :title="t('button.toggle_langs')" @click="toggleLocales">
-        <carbon-language />
-      </a>
+  <footer space-y-2>
+    <nav space-x-4 flex justify-center text-xl>
+      <!-- buttons -->
+      <router-link
+        to="/"
+        :title="t('button.home')"
+        btn-icon i-carbon-campsite
+      />
+      <button
+        :title="t('button.toggle_langs')"
+        btn-icon i-carbon-language
+        @click="toggleLocales"
+      />
+      <button
+        :title="t('button.toggle_dark')"
+        btn-icon i="carbon-sun dark:carbon-moon"
+        @click="toggleDark()"
+      />
+      <a
+        title="GitHub"
+        btn-icon i-carbon-logo-github
+        href="https://github.com/mys1024/online-tools-frontend" rel="noreferrer" target="_blank"
+      />
     </nav>
-    <div class="mt-5 mx-auto text-center text-sm">
-      <span class="opacity-40 transition-opacity duration-300 hover:opacity-70">
-        <a href="https://mit-license.org/">
-          MIT License
-        </a>
-      </span>
-      <span class="opacity-40">© 2021</span>
-      <span class="opacity-40 transition-opacity duration-300 hover:opacity-70">
-        <a href="https://mys.1024.cab">
-          Mys1024
-        </a>
-      </span>
+    <!-- language hint -->
+    <div
+      text-xs text-color-fade
+      transition-opacity duration-200
+      :class="{
+        'opacity-75': langHintAvailability > 0,
+        'opacity-0': langHintAvailability === 0,
+      }"
+    >
+      [{{ t(`intro.${locale}`) }}]
     </div>
-  </div>
+  </footer>
 </template>
+

@@ -1,6 +1,7 @@
-# Online tools fronted
+# online-tools-frontend
 
-This is the fronted project of [Online tools](https://tools.1024.cab).
+This is the frontend project of
+**[https://tools.1024.cab](https://tools.1024.cab)**.
 
-Also see the backend project at
-[mys1024/online-tools-backend](https://github.com/mys1024/online-tools-backend).
+Also see the backend project:
+[mys1024/online-tools-backend](https://github.com/mys1024/online-tools-backend)

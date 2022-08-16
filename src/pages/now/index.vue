@@ -3,16 +3,14 @@ const { t } = useI18n()
 
 const date = ref(new Date())
 const localString = computed(() => date.value.toLocaleString())
+const timestampString = computed(() => Math.floor(date.value.getTime() / 1000).toString())
 const isoString = computed(() => date.value.toISOString())
-const timestamp = computed(() => (date.value.getTime() / 1000).toFixed(3))
-setInterval(() => {
-  date.value = new Date()
-}, 17)
+setInterval(() => date.value = new Date(), 17)
 
-const copy = async(text: string) => {
+const copy = async (text: string) => {
   try {
     await navigator.clipboard.writeText(text)
-    alert(`Copied: ${text}`)
+    alert(`${t('intro.copied')}: ${text}`)
   }
   catch (err) {
     console.error(err)
@@ -22,32 +20,44 @@ const copy = async(text: string) => {
 </script>
 
 <template>
-  <Box :title="t('tools.now.title')">
-    <div class="space-y-4">
-      <Box :title-level="4" :title="t('tools.now.local')">
+  <TitledLayout
+    :title="t('title.now')"
+    w="md:7/10 lg:3/5"
+  >
+    <div space-y-10>
+      <div space-y-2>
+        <h2 text-xl>
+          {{ t('intro.local') }}
+        </h2>
         <div
-          class="cursor-pointer hover:text-blue-400 transition"
+          btn-text font-mono block
           @click="copy(localString)"
         >
           {{ localString }}
         </div>
-      </Box>
-      <Box :title-level="4" title="ISO 8601">
+      </div>
+      <div space-y-2>
+        <h2 text-xl>
+          {{ t('intro.unix_timestamp') }}
+        </h2>
         <div
-          class="cursor-pointer hover:text-blue-400 transition"
+          btn-text font-mono block
+          @click="copy(timestampString)"
+        >
+          {{ timestampString }}
+        </div>
+      </div>
+      <div space-y-2>
+        <h2 text-xl>
+          ISO 8601
+        </h2>
+        <div
+          btn-text font-mono block
           @click="copy(isoString)"
         >
           {{ isoString }}
         </div>
-      </Box>
-      <Box :title-level="4" :title="t('tools.now.unixTimestamp')">
-        <div
-          class="cursor-pointer hover:text-blue-400 transition"
-          @click="copy(timestamp)"
-        >
-          {{ timestamp }}
-        </div>
-      </Box>
+      </div>
     </div>
-  </Box>
+  </TitledLayout>
 </template>

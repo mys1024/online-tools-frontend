@@ -1,40 +1,31 @@
 <script setup lang="ts">
 const { t } = useI18n()
-
-type ToolInfo = {
-  title: () => string
-  path: string
-}
-
-const tools: ToolInfo[] = [
-  { title: () => t('tools.hello.title'), path: '/hello' },
-  { title: () => t('tools.clipboard.title'), path: '/clipboard' },
-  { title: () => t('tools.yamlToJson.title'), path: '/yaml' },
-  { title: () => t('tools.now.title'), path: '/now' },
-]
 </script>
 
 <template>
-  <div>
-    <Box :title="t('siteTitle')">
-      <div class="space-y-3 text-xl">
-        <div
-          v-for="toolInfo of tools"
-          :key="toolInfo.title()"
-        >
-          <router-link
-            :to="toolInfo.path"
-            class="text-btn underline"
-          >
-            {{ toolInfo.title() }}
-          </router-link>
-        </div>
-      </div>
-    </Box>
-  </div>
+  <TitledLayout
+    :title="t('title.online_tools')"
+    w="md:7/10 lg:3/5"
+  >
+    <div space-y-5 text-2xl>
+      <router-link
+        to="/clipboard"
+        btn-text block
+      >
+        {{ t('title.clipboard') }}
+      </router-link>
+      <router-link
+        to="/yaml-to-json"
+        btn-text block
+      >
+        {{ t('title.yaml_to_json') }}
+      </router-link>
+      <router-link
+        to="/now"
+        btn-text block
+      >
+        {{ t('title.now') }}
+      </router-link>
+    </div>
+  </TitledLayout>
 </template>
-
-<route lang="yaml">
-meta:
-  layout: default
-</route>

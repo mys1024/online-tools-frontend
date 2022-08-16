@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check_and_test:
+    name: node-${{ matrix.node-version }}, ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [16, 18]
+        os: [ubuntu-latest]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+      - uses: actions/cache@v3
+        with:
+          path: ~/.cache
+          key: cypress-cache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Type Check
+        run: pnpm run typecheck
+
+      - name: Unit Test
+        run: pnpm run test:unit
+
+      - name: Cypress PNPM Patch
+        run: cp pnpm-lock.yaml package-lock.json
+
+      - name: E2E Test (Cypress)
+        uses: cypress-io/github-action@v4
+        with:
+          install-command: echo
+          build: pnpm run build
+          start: npx vite --port 3333
