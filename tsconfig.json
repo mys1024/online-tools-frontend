@@ -18,7 +18,7 @@
       "vitest",
       "vite/client",
       "vue/ref-macros",
-      "vite-plugin-pages/client",
+      "vite-plugin-pages/client"
     ],
     "paths": {
       "~/*": ["src/*"]
