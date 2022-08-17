@@ -74,14 +74,9 @@ async function onDeleteBtnClick() {
         <input
           v-model="accessKey"
           :placeholder="t('intro.access_key')"
-          :aria-label="t('intro.access_key')"
           type="text"
           autocomplete="false"
-          p="x-4 y-2"
-          w="150px"
-          bg="transparent"
-          border="~ rounded gray-200 dark:gray-700"
-          outline="none active:none"
+          input-edit
         >
         <label class="hidden" for="input">{{ t('intro.access_key') }}</label>
       </div>
@@ -89,16 +84,11 @@ async function onDeleteBtnClick() {
       <div class="mt-4">
         <textarea
           v-model="text"
-          :placeholder="`${t('intro.text')} ${t('intro.expire')}`"
-          :aria-label="t('intro.text')"
           type="text"
           autocomplete="false"
-          p="x-4 y-2"
-          w="full"
-          h="50vh"
-          bg="transparent"
-          border="~ rounded gray-200 dark:gray-700"
-          outline="none active:none"
+          :placeholder="`${t('intro.text')} ${t('intro.expire')}`"
+          w-full h-50vh
+          textarea
         />
         <label class="hidden" for="input">{{ t('intro.text') }}</label>
       </div>

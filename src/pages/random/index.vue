@@ -11,9 +11,9 @@ const minInteger = ref(0)
 const maxInteger = ref(10)
 const randomInteger = ref(generateRandomInteger(0, 10))
 
-const length = ref(8)
-const randomUint8Array = ref(generateRandomUint8Array(8))
-const format = ref<'array' | 'hex'>('array')
+const length = ref(2)
+const randomUint8Array = ref(generateRandomUint8Array(2))
+const format = ref<'hex' | 'array'>('hex')
 const randomUint8ArrayStr = computed(() => {
   switch (format.value) {
     case 'array':
@@ -69,6 +69,7 @@ function onGenerateRandomUint8ArrayBtnClick() {
     w="md:7/10 lg:3/5"
   >
     <div space-y-10>
+      <!-- random float -->
       <div space-y-2>
         <h2 text-xl>
           {{ t('intro.random_float') }}
@@ -78,25 +79,17 @@ function onGenerateRandomUint8ArrayBtnClick() {
             v-model.number="minFloat"
             type="number"
             :placeholder="t('intro.min')"
-            :aria-label="t('intro.min')"
             autocomplete="false"
-            p="x-2 y-1"
-            w="150px"
-            bg="transparent"
-            border="~ rounded gray-200 dark:gray-700"
-            outline="none active:none"
+            w-32
+            input-edit
           >
           <input
             v-model.number="maxFloat"
             type="number"
             :placeholder="t('intro.max')"
-            :aria-label="t('intro.max')"
             autocomplete="false"
-            p="x-2 y-1"
-            w="150px"
-            bg="transparent"
-            border="~ rounded gray-200 dark:gray-700"
-            outline="none active:none"
+            w-32
+            input-edit
           >
           <button
             class="m-3 text-sm btn"
@@ -109,6 +102,7 @@ function onGenerateRandomUint8ArrayBtnClick() {
           {{ randomFloat }}
         </div>
       </div>
+      <!-- random integer -->
       <div space-y-2>
         <h2 text-xl>
           {{ t('intro.random_integer') }}
@@ -118,25 +112,17 @@ function onGenerateRandomUint8ArrayBtnClick() {
             v-model.number="minInteger"
             type="number"
             :placeholder="t('intro.min')"
-            :aria-label="t('intro.min')"
             autocomplete="false"
-            p="x-2 y-1"
-            w="150px"
-            bg="transparent"
-            border="~ rounded gray-200 dark:gray-700"
-            outline="none active:none"
+            w-32
+            input-edit
           >
           <input
             v-model.number="maxInteger"
             type="number"
             :placeholder="t('intro.max')"
-            :aria-label="t('intro.max')"
             autocomplete="false"
-            p="x-2 y-1"
-            w="150px"
-            bg="transparent"
-            border="~ rounded gray-200 dark:gray-700"
-            outline="none active:none"
+            w-32
+            input-edit
           >
           <button
             class="m-3 text-sm btn"
@@ -149,6 +135,7 @@ function onGenerateRandomUint8ArrayBtnClick() {
           {{ randomInteger }}
         </div>
       </div>
+      <!-- random Uint8Array -->
       <div space-y-2>
         <h2 text-xl>
           {{ t('intro.random_uint8array') }}
@@ -158,26 +145,20 @@ function onGenerateRandomUint8ArrayBtnClick() {
             v-model.number="length"
             type="number"
             :placeholder="t('intro.length')"
-            :aria-label="t('intro.length')"
             autocomplete="false"
-            w="150px"
-            p="x-2 y-1"
-            bg="transparent"
-            border="~ rounded gray-200 dark:gray-700"
-            outline="none active:none"
+            w-32
+            input-edit
           >
           <select
             v-model="format"
-            p="x-2 y-1"
-            bg="transparent"
-            border="~ rounded gray-200 dark:gray-700"
-            outline="none active:none"
+            w-24
+            input-select
           >
-            <option value="array">
-              Array
-            </option>
             <option value="hex">
               Hex
+            </option>
+            <option value="array">
+              Array
             </option>
           </select>
           <button

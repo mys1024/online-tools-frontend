@@ -78,14 +78,10 @@ function tab(event: KeyboardEvent) {
         type="text"
         autocomplete="off"
         placeholder="YAML"
-        w="full md:1/2"
-        h="1/2 md:full"
-        p="x-4 y-2"
+        w="full md:1/2" h="1/2 md:full"
         resize-none
         font-mono
-        bg-transparent
-        border="~ rounded gray-200 dark:gray-700"
-        outline="none active:none"
+        textarea
         @keydown.prevent.tab="tab"
         @focus="activeTextarea = 'yaml'"
       />
@@ -94,14 +90,10 @@ function tab(event: KeyboardEvent) {
         type="text"
         autocomplete="off"
         placeholder="JSON"
-        w="full md:1/2"
-        h="1/2 md:full"
-        p="x-4 y-2"
+        w="full md:1/2" h="1/2 md:full"
         resize-none
         font-mono
-        bg-transparent
-        border="~ rounded gray-200 dark:gray-700"
-        outline="none active:none"
+        textarea
         @keydown.prevent.tab="tab"
         @focus="activeTextarea = 'json'"
       />
