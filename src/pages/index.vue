@@ -26,6 +26,12 @@ const { t } = useI18n()
       >
         {{ t('title.now') }}
       </router-link>
+      <router-link
+        to="/random"
+        btn-text block
+      >
+        {{ t('title.random') }}
+      </router-link>
     </div>
   </TitledLayout>
 </template>

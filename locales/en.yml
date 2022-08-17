@@ -4,6 +4,7 @@ title:
   clipboard: Clipboard
   now: Now
   yaml_to_json: YAML to JSON
+  random: Random
 
 button:
   about: About
@@ -15,6 +16,7 @@ button:
   save: Save
   access: Access
   delete: Delete
+  generate: Generate
 
 intro:
   language: Language
@@ -26,3 +28,11 @@ intro:
   copied: Copied
   local: Local
   unix_timestamp: Unix Timestamp
+  min: Min
+  max: Max
+  length: Length
+  random_integer: Random Integer
+  random_float: Random Float
+  random_uint8array: Random Uint8Array
+  min_not_gt_max: Min should not be greater than Max
+  len_not_lt_1: Length should not be less than 1

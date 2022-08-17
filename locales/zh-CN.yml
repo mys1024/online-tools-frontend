@@ -4,6 +4,7 @@ title:
   clipboard: 剪贴板
   now: 当前
   yaml_to_json: YAML 转 JSON
+  random: 随机
 
 button:
   about: 关于
@@ -15,6 +16,7 @@ button:
   save: 保存
   access: 访问
   delete: 删除
+  generate: 生成
 
 intro:
   language: 语言
@@ -26,3 +28,11 @@ intro:
   copied: 已复制
   local: 本地化
   unix_timestamp: Unix 时间戳
+  min: 最小值
+  max: 最大值
+  length: 长度
+  random_integer: 随机整数
+  random_float: 随机浮点数
+  random_uint8array: 随机 Uint8Array
+  min_not_gt_max: 最小值不应小于最大值
+  len_not_lt_1: 长度不应小于1
