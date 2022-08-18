@@ -12,8 +12,12 @@ button:
 intro:
   access_key: Access Key
   copied: Copied
+  digest_alg: Digest Algorithm
   en: English
   expire: (will expire after 30 minutes)
+  file: File
+  input: Input
+  input_type: Input Type
   language: Language
   len_not_lt_1: Length should not be less than 1
   length: Length (bytes)
@@ -21,14 +25,18 @@ intro:
   max: Max
   min: Min
   min_not_gt_max: Min should not be greater than Max
+  output: Output
   random_binary_sequence: Random Binary Sequence
   random_float: Random Float
   random_integer: Random Integer
+  select_a_file: Select a file
+  string: String
   text: Text
   unix_timestamp: Unix Timestamp
   zh-CN: Simplify Chinese
 title:
   clipboard: Clipboard
+  digest: Digest
   not_found: Not Found
   now: Now
   online_tools: Online Tools

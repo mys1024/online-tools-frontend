@@ -35,4 +35,11 @@ context('Basic', () => {
       .url()
       .should('eq', 'http://localhost:3333/random')
   })
+
+  it('digest', () => {
+    cy.get('[href="/digest"]')
+      .click()
+      .url()
+      .should('eq', 'http://localhost:3333/digest')
+  })
 })
