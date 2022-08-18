@@ -13,17 +13,19 @@ const randomInteger = ref(generateRandomInteger(0, 10))
 
 const length = ref(2)
 const randomUint8Array = ref(generateRandomUint8Array(2))
-const format = ref<'hex' | 'array'>('hex')
+const format = ref<'hex' | 'uint8array'>('hex')
 const randomUint8ArrayStr = computed(() => {
   switch (format.value) {
-    case 'array':
-      return `[${randomUint8Array.value}]`
     case 'hex':
       return hex(randomUint8Array.value)
+    case 'uint8array':
+      return `[${randomUint8Array.value}]`
   }
 })
 
 function generateRandomInteger(min: number, max: number): number {
+  min = Math.ceil(min)
+  max = Math.floor(max)
   return Math.floor(min + Math.random() * (max - min + 1))
 }
 
@@ -80,7 +82,7 @@ function onGenerateRandomUint8ArrayBtnClick() {
             type="number"
             :placeholder="t('intro.min')"
             autocomplete="false"
-            w-32
+            w-40
             input-edit
           >
           <input
@@ -88,16 +90,16 @@ function onGenerateRandomUint8ArrayBtnClick() {
             type="number"
             :placeholder="t('intro.max')"
             autocomplete="false"
-            w-32
+            w-40
             input-edit
           >
-          <button
-            class="m-3 text-sm btn"
-            @click="onGenerateRandomFloatBtnClick"
-          >
-            {{ t('button.generate') }}
-          </button>
         </div>
+        <button
+          class="m-3 text-sm btn"
+          @click="onGenerateRandomFloatBtnClick"
+        >
+          {{ t('button.generate') }}
+        </button>
         <div font-mono break-all>
           {{ randomFloat }}
         </div>
@@ -113,7 +115,7 @@ function onGenerateRandomUint8ArrayBtnClick() {
             type="number"
             :placeholder="t('intro.min')"
             autocomplete="false"
-            w-32
+            w-40
             input-edit
           >
           <input
@@ -121,24 +123,24 @@ function onGenerateRandomUint8ArrayBtnClick() {
             type="number"
             :placeholder="t('intro.max')"
             autocomplete="false"
-            w-32
+            w-40
             input-edit
           >
-          <button
-            class="m-3 text-sm btn"
-            @click="onGenerateRandomIntegerBtnClick"
-          >
-            {{ t('button.generate') }}
-          </button>
         </div>
+        <button
+          class="m-3 text-sm btn"
+          @click="onGenerateRandomIntegerBtnClick"
+        >
+          {{ t('button.generate') }}
+        </button>
         <div font-mono break-all>
           {{ randomInteger }}
         </div>
       </div>
-      <!-- random Uint8Array -->
+      <!-- random binary sequence -->
       <div space-y-2>
         <h2 text-xl>
-          {{ t('intro.random_uint8array') }}
+          {{ t('intro.random_binary_sequence') }}
         </h2>
         <div space-x-2>
           <input
@@ -146,28 +148,28 @@ function onGenerateRandomUint8ArrayBtnClick() {
             type="number"
             :placeholder="t('intro.length')"
             autocomplete="false"
-            w-32
+            w-40
             input-edit
           >
           <select
             v-model="format"
-            w-24
+            w-40
             input-select
           >
             <option value="hex">
               Hex
             </option>
-            <option value="array">
-              Array
+            <option value="uint8array">
+              Uint8Array
             </option>
           </select>
-          <button
-            class="m-3 text-sm btn"
-            @click="onGenerateRandomUint8ArrayBtnClick"
-          >
-            {{ t('button.generate') }}
-          </button>
         </div>
+        <button
+          class="m-3 text-sm btn"
+          @click="onGenerateRandomUint8ArrayBtnClick"
+        >
+          {{ t('button.generate') }}
+        </button>
         <div font-mono break-all>
           {{ randomUint8ArrayStr }}
         </div>

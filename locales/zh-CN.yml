@@ -1,38 +1,36 @@
-title:
-  online_tools: 在线工具
-  not_found: 页面不存在
-  clipboard: 剪贴板
-  now: 当前
-  yaml_to_json: YAML 转 JSON
-  random: 随机
-
 button:
   about: 关于
-  back: 返回
-  ok: 确定
-  home: 首页
-  toggle_dark: 切换深色模式
-  toggle_langs: 切换语言
-  save: 保存
   access: 访问
+  back: 返回
   delete: 删除
   generate: 生成
-
+  home: 首页
+  ok: 确定
+  save: 保存
+  toggle_dark: 切换深色模式
+  toggle_langs: 切换语言
 intro:
-  language: 语言
-  en: 英语
-  zh-CN: 简体中文
-  text: 文本
   access_key: 访问码
-  expire: （在30分钟后会过期）
   copied: 已复制
-  local: 本地化
-  unix_timestamp: Unix 时间戳
-  min: 最小值
-  max: 最大值
-  length: 长度
-  random_integer: 随机整数
-  random_float: 随机浮点数
-  random_uint8array: 随机 Uint8Array
-  min_not_gt_max: 最小值不应小于最大值
+  en: 英语
+  expire: （在30分钟后会过期）
+  language: 语言
   len_not_lt_1: 长度不应小于1
+  length: 长度（字节）
+  local: 本地化
+  max: 最大值
+  min: 最小值
+  min_not_gt_max: 最小值不应小于最大值
+  random_binary_sequence: 随机二进制序列
+  random_float: 随机浮点数
+  random_integer: 随机整数
+  text: 文本
+  unix_timestamp: Unix 时间戳
+  zh-CN: 简体中文
+title:
+  clipboard: 剪贴板
+  not_found: 页面不存在
+  now: 当前
+  online_tools: 在线工具
+  random: 随机
+  yaml_to_json: YAML 转 JSON
