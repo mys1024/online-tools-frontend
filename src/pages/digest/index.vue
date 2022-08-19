@@ -11,18 +11,17 @@ const inputArrayBuffer = ref<ArrayBuffer>(new Uint8Array())
 const inputType = ref<'String' | 'File'>('String')
 const digestAlg = ref<DigestAlg>('MD5')
 const representation = ref<'Hex' | 'Base64' | 'Base64URL' | 'Uint8Array'>('Hex')
-const output = computed(() => {
+const output = computedAsync(async () => {
   const data = inputType.value === 'String' ? inputString.value : inputArrayBuffer.value
-  const _digest = digest(digestAlg.value, data)
   switch (representation.value) {
     case 'Hex':
-      return hex(_digest)
+      return hex(await digest(digestAlg.value, data))
     case 'Base64':
-      return base64(_digest)
+      return base64(await digest(digestAlg.value, data))
     case 'Base64URL':
-      return base64url(_digest)
+      return base64url(await digest(digestAlg.value, data))
     case 'Uint8Array':
-      return `[${_digest}]`
+      return `[${await digest(digestAlg.value, data)}]`
   }
 })
 
