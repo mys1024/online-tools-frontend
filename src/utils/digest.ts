@@ -11,16 +11,16 @@ import type { DigestAlg } from '~/types'
 const encoder = new TextEncoder()
 
 const hasherMap = {
-  MD5: createMD5(),
-  SHA1: createSHA1(),
-  SHA256: createSHA256(),
-  SHA512: createSHA512(),
-  BLAKE3: createBLAKE3(),
-  SM3: createSM3(),
+  MD5: await createMD5(),
+  SHA1: await createSHA1(),
+  SHA256: await createSHA256(),
+  SHA512: await createSHA512(),
+  BLAKE3: await createBLAKE3(),
+  SM3: await createSM3(),
 }
 
-export async function digest(alg: DigestAlg, data: string | ArrayBuffer) {
+export function digest(alg: DigestAlg, data: string | ArrayBuffer) {
   const buffer = typeof data === 'string' ? encoder.encode(data) : new Uint8Array(data)
-  const hasher = await hasherMap[alg]
+  const hasher = hasherMap[alg]
   return hasher.init().update(buffer).digest('binary')
 }

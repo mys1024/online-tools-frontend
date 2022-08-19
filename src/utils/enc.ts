@@ -9,7 +9,7 @@ export function hex(data: Uint8Array, uppercase = true) {
   return str
 }
 
-export function base64(data: Uint8Array): string {
+export function base64(data: Uint8Array, padding = true): string {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
   let s = ''
   let tmp = 0
@@ -32,16 +32,18 @@ export function base64(data: Uint8Array): string {
   switch (data.length % 3) {
     case 1:
       s += chars[tmp]
-      s += '=='
+      if (padding)
+        s += '=='
       break
     case 2:
       s += chars[tmp]
-      s += '='
+      if (padding)
+        s += '='
   }
   return s
 }
 
-export function base64url(data: Uint8Array, padding = false): string {
+export function base64url(data: Uint8Array, padding = true): string {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
   let s = ''
   let tmp = 0

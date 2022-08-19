@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DigestAlg } from '~/types'
 import { digest } from '~/utils/digest'
-import { hex } from '~/utils/enc'
+import { base64, base64url, hex } from '~/utils/enc'
 
 const { t } = useI18n()
 
@@ -10,9 +10,20 @@ const inputFileName = ref('')
 const inputArrayBuffer = ref<ArrayBuffer>(new Uint8Array())
 const inputType = ref<'String' | 'File'>('String')
 const digestAlg = ref<DigestAlg>('MD5')
-const output = asyncComputed(async () => {
+const representation = ref<'Hex' | 'Base64' | 'Base64URL' | 'Uint8Array'>('Hex')
+const output = computed(() => {
   const data = inputType.value === 'String' ? inputString.value : inputArrayBuffer.value
-  return hex(await digest(digestAlg.value, data))
+  const _digest = digest(digestAlg.value, data)
+  switch (representation.value) {
+    case 'Hex':
+      return hex(_digest)
+    case 'Base64':
+      return base64(_digest)
+    case 'Base64URL':
+      return base64url(_digest)
+    case 'Uint8Array':
+      return `[${_digest}]`
+  }
 })
 
 async function onFileSelect(fileList: FileList | null) {
@@ -103,6 +114,24 @@ async function onFileSelect(fileList: FileList | null) {
         <h2 text-xl>
           {{ t('intro.output') }}
         </h2>
+        <select
+          v-model="representation"
+          w-40
+          input-select
+        >
+          <option value="Hex">
+            Hex
+          </option>
+          <option value="Base64">
+            Base64
+          </option>
+          <option value="Base64URL">
+            Base64URL
+          </option>
+          <option value="Uint8Array">
+            Uint8Array
+          </option>
+        </select>
         <textarea
           :value="output"
           type="text"
