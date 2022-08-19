@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DigestAlg } from '~/types'
 import { digest } from '~/utils/digest'
-import { hex } from '~/utils/plain'
+import { hex } from '~/utils/enc'
 
 const { t } = useI18n()
 

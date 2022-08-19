@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { hex } from '~/utils/plain'
+import { base64, base64url, hex } from '~/utils/enc'
 
 const { t } = useI18n()
 
@@ -13,12 +13,16 @@ const randomInteger = ref(generateRandomInteger(0, 10))
 
 const length = ref(2)
 const randomUint8Array = ref(generateRandomUint8Array(2))
-const format = ref<'hex' | 'uint8array'>('hex')
+const representation = ref<'Hex' | 'Base64' | 'Base64URL' | 'Uint8Array'>('Hex')
 const randomUint8ArrayStr = computed(() => {
-  switch (format.value) {
-    case 'hex':
+  switch (representation.value) {
+    case 'Hex':
       return hex(randomUint8Array.value)
-    case 'uint8array':
+    case 'Base64':
+      return base64(randomUint8Array.value)
+    case 'Base64URL':
+      return base64url(randomUint8Array.value)
+    case 'Uint8Array':
       return `[${randomUint8Array.value}]`
   }
 })
@@ -152,14 +156,20 @@ function onGenerateRandomUint8ArrayBtnClick() {
             input-edit
           >
           <select
-            v-model="format"
+            v-model="representation"
             w-40
             input-select
           >
-            <option value="hex">
+            <option value="Hex">
               Hex
             </option>
-            <option value="uint8array">
+            <option value="Base64">
+              Base64
+            </option>
+            <option value="Base64URL">
+              Base64URL
+            </option>
+            <option value="Uint8Array">
               Uint8Array
             </option>
           </select>
