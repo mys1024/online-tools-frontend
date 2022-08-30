@@ -12,7 +12,6 @@ export function hex(data: Uint8Array, uppercase = true) {
 export function ignoreError<T>(func: () => T): T | undefined {
   try {
     return func()
-  } catch (err) {
-    return
   }
+  catch (err) {}
 }

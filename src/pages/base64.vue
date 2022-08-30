@@ -12,8 +12,8 @@ const base64 = computed(() => {
   return dataType.value === 'String'
     ? Base64.encode(normalStrOrUint8arrStr.value)
     : dataType.value === 'Uint8Array'
-    ? Base64.encode(new Uint8Array(ignoreError(() => JSON.parse(normalStrOrUint8arrStr.value))))
-    : Base64.encode(new Uint8Array(dataFile.value))
+      ? Base64.encode(new Uint8Array(ignoreError(() => JSON.parse(normalStrOrUint8arrStr.value))))
+      : Base64.encode(new Uint8Array(dataFile.value))
 })
 
 async function onFileSelect(fileList: FileList | null) {
@@ -95,4 +95,3 @@ async function onFileSelect(fileList: FileList | null) {
     </div>
   </TitledLayout>
 </template>
-  
