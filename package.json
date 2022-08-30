@@ -1,7 +1,7 @@
 {
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@7.8.0",
+  "packageManager": "pnpm@7.9.5",
   "author": "mys1024",
   "license": "MIT",
   "scripts": {
@@ -10,9 +10,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "preview-https": "serve dist",
-    "test": "vitest",
+    "test:unit": "vitest run",
+    "test:unit:dev": "vitest",
     "test:e2e": "cypress open",
-    "test:unit": "vitest",
     "typecheck": "vue-tsc --noEmit",
     "up": "taze major -I"
   },
