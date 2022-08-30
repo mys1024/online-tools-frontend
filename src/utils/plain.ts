@@ -8,3 +8,11 @@ export function hex(data: Uint8Array, uppercase = true) {
   }
   return str
 }
+
+export function ignoreError<T>(func: () => T): T | undefined {
+  try {
+    return func()
+  } catch (err) {
+    return
+  }
+}

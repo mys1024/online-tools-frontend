@@ -42,4 +42,11 @@ context('Basic', () => {
       .url()
       .should('eq', 'http://localhost:3333/digest')
   })
+
+  it('base64', () => {
+    cy.get('[href="/base64"]')
+      .click()
+      .url()
+      .should('eq', 'http://localhost:3333/base64')
+  })
 })

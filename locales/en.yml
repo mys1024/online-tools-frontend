@@ -11,7 +11,10 @@ button:
   toggle_langs: Change languages
 intro:
   access_key: Access Key
+  base64: Base64
   copied: Copied
+  data: Data
+  data_type: Data Type
   digest_alg: Digest Algorithm
   en: English
   expire: (will expire after 30 minutes)
@@ -32,9 +35,12 @@ intro:
   select_a_file: Select a file
   string: String
   text: Text
+  uint8arr: Uint8Array
+  uint8arr_with_eg: Uint8Array (e.g. [112, 255, 61])
   unix_timestamp: Unix Timestamp
   zh-CN: Simplify Chinese
 title:
+  base64: Base64
   clipboard: Clipboard
   digest: Digest
   not_found: Not Found

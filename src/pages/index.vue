@@ -38,6 +38,12 @@ const { t } = useI18n()
       >
         {{ t('title.digest') }}
       </router-link>
+      <router-link
+        to="/base64"
+        btn-text block
+      >
+        {{ t('title.base64') }}
+      </router-link>
     </div>
   </TitledLayout>
 </template>
