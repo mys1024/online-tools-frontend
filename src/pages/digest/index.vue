@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { Base64, Base64Url } from 'base64-esm'
 import type { DigestAlg } from '~/types'
 import { digest } from '~/utils/digest'
-import { base64, base64url, hex } from '~/utils/enc'
+import { hex } from '~/utils/plain'
 
 const { t } = useI18n()
 
@@ -17,9 +18,9 @@ const output = computedAsync(async () => {
     case 'Hex':
       return hex(await digest(digestAlg.value, data))
     case 'Base64':
-      return base64(await digest(digestAlg.value, data))
+      return Base64.encode(await digest(digestAlg.value, data))
     case 'Base64URL':
-      return base64url(await digest(digestAlg.value, data))
+      return Base64Url.encode(await digest(digestAlg.value, data))
     case 'Uint8Array':
       return `[${await digest(digestAlg.value, data)}]`
   }
