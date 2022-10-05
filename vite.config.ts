@@ -1,4 +1,3 @@
-import path from 'path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
@@ -8,16 +7,18 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Inspect from 'vite-plugin-inspect'
+import ResolveAlias from 'vite-plugin-easy-resolve-alias'
 import Unocss from 'unocss/vite'
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      '~/': `${path.resolve(__dirname, 'src')}/`,
-    },
-  },
-
   plugins: [
+    // https://github.com/antfu/vite-plugin-inspect
+    Inspect(),
+
+    // https://github.com/mys1024/vite-plugin-easy-resolve-alias
+    ResolveAlias({ '~/': 'src/' }),
+
+    // https://github.com/vitejs/vite/tree/main/packages/plugin-vue
     Vue(),
 
     // https://github.com/hannoeru/vite-plugin-pages
@@ -47,6 +48,9 @@ export default defineConfig({
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
     Unocss(),
+
+    // https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
+    VueI18n(),
 
     // https://github.com/antfu/vite-plugin-pwa
     VitePWA({
@@ -79,17 +83,6 @@ export default defineConfig({
         ],
       },
     }),
-
-    // https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
-    VueI18n({
-      runtimeOnly: true,
-      compositionOnly: true,
-      include: [path.resolve(__dirname, 'locales/**')],
-    }),
-
-    // https://github.com/antfu/vite-plugin-inspect
-    // Visit http://localhost:3333/__inspect/ to see the inspector
-    Inspect(),
   ],
 
   // https://github.com/vitest-dev/vitest
