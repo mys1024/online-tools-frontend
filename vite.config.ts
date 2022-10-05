@@ -5,13 +5,10 @@ import Pages from 'vite-plugin-pages'
 import generateSitemap from 'vite-ssg-sitemap'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import Markdown from 'vite-plugin-vue-markdown'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Inspect from 'vite-plugin-inspect'
-import LinkAttributes from 'markdown-it-link-attributes'
 import Unocss from 'unocss/vite'
-import Shiki from 'markdown-it-shiki'
 
 export default defineConfig({
   resolve: {
@@ -21,15 +18,10 @@ export default defineConfig({
   },
 
   plugins: [
-    Vue({
-      include: [/\.vue$/, /\.md$/],
-      reactivityTransform: true,
-    }),
+    Vue(),
 
     // https://github.com/hannoeru/vite-plugin-pages
-    Pages({
-      extensions: ['vue', 'md'],
-    }),
+    Pages(),
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
@@ -50,40 +42,11 @@ export default defineConfig({
     }),
 
     // https://github.com/antfu/unplugin-vue-components
-    Components({
-      // allow auto load markdown components under `./src/components/`
-      extensions: ['vue', 'md'],
-      // allow auto import and register components used in markdown
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-      dts: 'src/components.d.ts',
-    }),
+    Components(),
 
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
     Unocss(),
-
-    // https://github.com/antfu/vite-plugin-vue-markdown
-    // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
-    Markdown({
-      wrapperClasses: 'prose prose-sm m-auto text-left',
-      headEnabled: true,
-      markdownItSetup(md) {
-        // https://prismjs.com/
-        md.use(Shiki, {
-          theme: {
-            light: 'vitesse-light',
-            dark: 'vitesse-dark',
-          },
-        })
-        md.use(LinkAttributes, {
-          matcher: (link: string) => /^https?:\/\//.test(link),
-          attrs: {
-            target: '_blank',
-            rel: 'noopener',
-          },
-        })
-      },
-    }),
 
     // https://github.com/antfu/vite-plugin-pwa
     VitePWA({
