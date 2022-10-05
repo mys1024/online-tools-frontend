@@ -5,6 +5,7 @@
     "Hasher",
     "iconify",
     "intlify",
+    "nprogress",
     "pinia",
     "pnpm",
     "shiki",
