@@ -1,4 +1,4 @@
-name: CI
+name: Test
 
 on:
   push:
@@ -10,25 +10,28 @@ on:
       - main
 
 jobs:
-  check_and_test:
+  test:
     name: node-${{ matrix.node-version }}, ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         node-version: [16, 18]
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest]
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
+          registry-url: 'https://registry.npmjs.org'
           cache: pnpm
 
       - name: Install
@@ -40,5 +43,8 @@ jobs:
       - name: Type Check
         run: pnpm run typecheck
 
-      - name: Unit Test
-        run: pnpm run test:unit
+      - name: Test
+        run: pnpm run test
+
+      - name: Build
+        run: pnpm run build

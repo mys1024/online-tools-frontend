@@ -6,14 +6,13 @@
   "license": "MIT",
   "scripts": {
     "build": "vite-ssg build",
-    "dev": "vite --port 3333 --open",
+    "dev": "vite",
+    "test": "vitest",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "typecheck": "vue-tsc --noEmit",
     "preview": "vite preview",
-    "preview-https": "serve dist",
-    "test:unit": "vitest run",
-    "test:unit:dev": "vitest",
-    "typecheck": "vue-tsc --noEmit"
+    "preview-https": "serve dist"
   },
   "dependencies": {
     "@vueuse/core": "^9.3.0",
