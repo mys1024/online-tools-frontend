@@ -20,9 +20,7 @@ useHead({
       href: computed(() => preferredDark.value ? '/favicon-dark.ico' : '/favicon.ico'),
     },
   ],
-  htmlAttrs: [
-    { lang: locale },
-  ],
+  htmlAttrs: { lang: locale },
 })
 </script>
 
