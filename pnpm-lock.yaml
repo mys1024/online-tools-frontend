@@ -4,6 +4,7 @@ specifiers:
   '@antfu/eslint-config': ^0.27.0
   '@iconify-json/carbon': ^1.1.8
   '@intlify/vite-plugin-vue-i18n': ^6.0.3
+  '@ltd/j-toml': ^1.35.2
   '@types/js-yaml': ^4.0.5
   '@types/nprogress': ^0.2.0
   '@vitejs/plugin-vue': ^3.1.2
@@ -40,6 +41,7 @@ specifiers:
   vue-tsc: ^0.40.13
 
 dependencies:
+  '@ltd/j-toml': 1.35.2
   '@vueuse/core': 9.3.0_vue@3.2.40
   '@vueuse/head': 0.7.13_vue@3.2.40
   base64-esm: 0.1.4
@@ -1551,6 +1553,10 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
+
+  /@ltd/j-toml/1.35.2:
+    resolution: {integrity: sha512-vhRlbbbp61PE/209BO14wRvgldF34lplcmVaNZnKU2QRwOfc+0NhD3S0hdMBRw1d3cvU9EC67tuV7MNRiVDNyg==}
+    dev: false
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}

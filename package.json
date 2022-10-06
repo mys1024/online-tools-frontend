@@ -15,6 +15,7 @@
     "preview-https": "serve dist"
   },
   "dependencies": {
+    "@ltd/j-toml": "^1.35.2",
     "@vueuse/core": "^9.3.0",
     "@vueuse/head": "^0.7.13",
     "base64-esm": "^0.1.4",

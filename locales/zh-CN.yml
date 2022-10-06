@@ -46,4 +46,5 @@ title:
   now: 当前
   online_tools: 在线工具
   random: 随机
+  toml_to_json: TOML 转 JSON
   yaml_to_json: YAML 转 JSON

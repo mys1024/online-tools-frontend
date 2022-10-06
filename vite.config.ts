@@ -85,6 +85,12 @@ export default defineConfig({
     }),
   ],
 
+  optimizeDeps: {
+    esbuildOptions: {
+      target: 'esnext',
+    },
+  },
+
   // https://github.com/vitest-dev/vitest
   test: {
     include: ['test/**/*.test.ts'],

@@ -21,6 +21,12 @@ const { t } = useI18n()
         {{ t('title.yaml_to_json') }}
       </router-link>
       <router-link
+        to="/toml-to-json"
+        btn-text block
+      >
+        {{ t('title.toml_to_json') }}
+      </router-link>
+      <router-link
         to="/now"
         btn-text block
       >
