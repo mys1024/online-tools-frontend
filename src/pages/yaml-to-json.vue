@@ -7,44 +7,52 @@ const yamlStr = ref('')
 const jsonStr = ref('')
 const activeTextarea = ref<'yaml' | 'json'>('yaml')
 
-watchEffect(() => {
-  if (activeTextarea.value === 'yaml') {
-    if (yamlStr.value === '') {
-      jsonStr.value = ''
-      return
-    }
-    try {
-      const obj = YAML.load(yamlStr.value)
-      if (obj instanceof Object)
-        jsonStr.value = JSON.stringify(obj, undefined, 2)
-      else
-        throw new Error('YAML.load() did not return an Object')
-    }
-    catch (err) {
-      if (err instanceof Error)
-        jsonStr.value = `${err.name}: ${err.message}`
-      else
-        throw err
-    }
+function onYamlStrUpdate() {
+  if (yamlStr.value === '') {
+    jsonStr.value = ''
+    return
   }
-  else {
-    if (jsonStr.value === '') {
-      yamlStr.value = ''
-      return
-    }
-    try {
-      const obj = JSON.parse(jsonStr.value)
-      if (obj instanceof Object)
-        yamlStr.value = YAML.dump(obj)
-      else
-        throw new Error('JSON.parse() did not return an Object')
-    }
-    catch (err) {
-      if (err instanceof Error)
-        yamlStr.value = `${err.name}: ${err.message}`
-      else
-        throw err
-    }
+  try {
+    const obj = YAML.load(yamlStr.value)
+    if (typeof obj !== 'object')
+      throw new Error('YAML.load() did not return an object')
+    jsonStr.value = JSON.stringify(obj, undefined, 2)
+  }
+  catch (err) {
+    if (!(err instanceof Error))
+      throw err
+    jsonStr.value = `${err.name}: ${err.message}`
+  }
+}
+
+function onJsonStrUpdate() {
+  if (jsonStr.value === '') {
+    yamlStr.value = ''
+    return
+  }
+  try {
+    const obj = JSON.parse(jsonStr.value)
+    if (typeof obj !== 'object')
+      throw new Error('JSON.parse() did not return an object')
+    yamlStr.value = YAML.dump(obj)
+  }
+  catch (err) {
+    if (!(err instanceof Error))
+      throw err
+    yamlStr.value = `${err.name}: ${err.message}`
+  }
+}
+
+watchEffect(() => {
+  switch (activeTextarea.value) {
+    case 'yaml':
+      onYamlStrUpdate()
+      break
+    case 'json':
+      onJsonStrUpdate()
+      break
+    default:
+      throw new Error(`unexpected active textarea: ${activeTextarea.value}`)
   }
 })
 
