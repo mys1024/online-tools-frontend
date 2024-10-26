@@ -8,12 +8,12 @@ const { t } = useI18n()
     w="md:7/10 lg:3/5"
   >
     <div space-y-5 text-2xl>
-      <router-link
+      <!-- <router-link
         to="/clipboard"
         btn-text block
       >
         {{ t('title.clipboard') }}
-      </router-link>
+      </router-link> -->
       <router-link
         to="/yaml-to-json"
         btn-text block
