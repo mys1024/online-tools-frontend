@@ -7,7 +7,7 @@ const timestampString = computed(() => Math.floor(date.value.getTime() / 1000).t
 const isoString = computed(() => date.value.toISOString())
 setInterval(() => date.value = new Date(), 17)
 
-const copy = async (text: string) => {
+async function copy(text: string) {
   try {
     await navigator.clipboard.writeText(text)
     alert(`${t('intro.copied')}: ${text}`)

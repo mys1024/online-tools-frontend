@@ -2,12 +2,12 @@
 const { t, availableLocales, locale } = useI18n()
 
 const langHintAvailability = ref(0)
-const triggerLangHintAvailability = () => {
+function triggerLangHintAvailability() {
   langHintAvailability.value++
   setTimeout(() => langHintAvailability.value--, 5000)
 }
 
-const toggleLocales = () => {
+function toggleLocales() {
   const locales = availableLocales
   const index = (locales.indexOf(locale.value) + 1) % locales.length
   locale.value = locales[index] as string
@@ -53,4 +53,3 @@ const toggleLocales = () => {
     </div>
   </footer>
 </template>
-

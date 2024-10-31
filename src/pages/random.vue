@@ -25,6 +25,8 @@ const randomUint8ArrayStr = computed(() => {
       return base64urlEncode(randomUint8Array.value)
     case 'Uint8Array':
       return `[${randomUint8Array.value}]`
+    default:
+      throw new Error(`Unknown type: ${representation.value}`)
   }
 })
 

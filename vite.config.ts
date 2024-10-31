@@ -1,14 +1,14 @@
-import { defineConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
-import Pages from 'vite-plugin-pages'
-import generateSitemap from 'vite-ssg-sitemap'
-import Components from 'unplugin-vue-components/vite'
-import AutoImport from 'unplugin-auto-import/vite'
-import { VitePWA } from 'vite-plugin-pwa'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
-import Inspect from 'vite-plugin-inspect'
-import ResolveAlias from 'vite-plugin-easy-resolve-alias'
+import Vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { defineConfig } from 'vite'
+import ResolveAlias from 'vite-plugin-easy-resolve-alias'
+import Inspect from 'vite-plugin-inspect'
+import Pages from 'vite-plugin-pages'
+import { VitePWA } from 'vite-plugin-pwa'
+import generateSitemap from 'vite-ssg-sitemap'
 
 export default defineConfig({
   plugins: [

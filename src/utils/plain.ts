@@ -13,5 +13,8 @@ export function ignoreError<T>(func: () => T): T | undefined {
   try {
     return func()
   }
-  catch (err) {}
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  catch (err) {
+    // do nothing
+  }
 }

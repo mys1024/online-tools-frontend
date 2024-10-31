@@ -1,5 +1,5 @@
 interface JsonResponse<T = unknown> extends Omit<Response, 'arrayBuffer' | 'blob' | 'formData' | 'text'> {
-  json(): Promise<T>
+  json: () => Promise<T>
 }
 
 export function jsonFetch<T>(
