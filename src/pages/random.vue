@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Base64, Base64Url } from 'base64-esm'
+import { base64Encode, base64urlEncode } from 'base64-esm'
 import { hex } from '~/utils/plain'
 
 const { t } = useI18n()
@@ -20,9 +20,9 @@ const randomUint8ArrayStr = computed(() => {
     case 'Hex':
       return hex(randomUint8Array.value)
     case 'Base64':
-      return Base64.encode(randomUint8Array.value)
+      return base64Encode(randomUint8Array.value)
     case 'Base64URL':
-      return Base64Url.encode(randomUint8Array.value)
+      return base64urlEncode(randomUint8Array.value)
     case 'Uint8Array':
       return `[${randomUint8Array.value}]`
   }

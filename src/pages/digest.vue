@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Base64, Base64Url } from 'base64-esm'
+import { base64Encode, base64urlEncode } from 'base64-esm'
 import type { DigestAlg } from '~/types'
 import { digest } from '~/utils/digest'
 import { hex } from '~/utils/plain'
@@ -18,9 +18,9 @@ const output = computedAsync(async () => {
     case 'Hex':
       return hex(await digest(digestAlg.value, data))
     case 'Base64':
-      return Base64.encode(await digest(digestAlg.value, data))
+      return base64Encode(await digest(digestAlg.value, data))
     case 'Base64URL':
-      return Base64Url.encode(await digest(digestAlg.value, data))
+      return base64urlEncode(await digest(digestAlg.value, data))
     case 'Uint8Array':
       return `[${await digest(digestAlg.value, data)}]`
   }

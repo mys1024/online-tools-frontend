@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Base64 } from 'base64-esm'
+import { base64Encode } from 'base64-esm'
 import { ignoreError } from '~/utils/plain'
 
 const { t } = useI18n()
@@ -10,10 +10,10 @@ const dataFileName = ref('')
 const dataType = ref<'String' | 'Uint8Array' | 'File'>('String')
 const base64 = computed(() => {
   return dataType.value === 'String'
-    ? Base64.encode(normalStrOrUint8arrStr.value)
+    ? base64Encode(normalStrOrUint8arrStr.value)
     : dataType.value === 'Uint8Array'
-      ? Base64.encode(new Uint8Array(ignoreError(() => JSON.parse(normalStrOrUint8arrStr.value))))
-      : Base64.encode(new Uint8Array(dataFile.value))
+      ? base64Encode(new Uint8Array(ignoreError(() => JSON.parse(normalStrOrUint8arrStr.value))))
+      : base64Encode(new Uint8Array(dataFile.value))
 })
 
 async function onFileSelect(fileList: FileList | null) {
